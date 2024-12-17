@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>건설 단위 변환기</title>
+    <title>건설 자재 계산기</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>건설 단위 변환기</h1>
-        <p id="language-selector">다국어 지원</p>
+        <h1>건설 자재 계산기</h1>
+        <p>면적, 자재 종류, 화폐 단위를 선택하고 자동으로 자재량과 총 비용을 계산하세요.</p>
     </header>
     
     <main>
         <div class="calculator-container">
-            <h2 id="material-calculator-heading">건축 자재 계산기</h2>
+            <h2>자재 계산기</h2>
             
             <label for="area">면적(제곱미터):</label>
             <input type="number" id="area" placeholder="면적을 입력하세요">
@@ -26,64 +26,32 @@
                 <option value="bricks">벽돌 (개)</option>
             </select>
 
-            <button onclick="calculateMaterials()">자재량 계산</button>
+            <label for="currency">화폐 단위:</label>
+            <select id="currency">
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <option value="KRW">KRW</option>
+            </select>
+
+            <button onclick="calculateMaterialsAndCost()">계산</button>
 
             <div id="material-result">
                 <p>자재 필요량: <span id="material-output"></span></p>
-            </div>
-
-            <h2>자재 비용 계산기</h2>
-            <label for="material-cost">자재 비용 (단위당):</label>
-            <input type="number" id="material-cost" placeholder="단위당 가격">
-
-            <label for="quantity">필요 수량:</label>
-            <input type="number" id="quantity" placeholder="필요 수량">
-
-            <button onclick="calculateCost()">비용 계산</button>
-
-            <div id="cost-result">
                 <p>총 비용: <span id="cost-output"></span></p>
             </div>
         </div>
 
-        <div class="exchange-rate-container">
-            <h3>실시간 환율 계산</h3>
-            <label for="currency-from">환전할 화폐:</label>
-            <select id="currency-from">
-                <option value="USD">USD</option>
-                <option value="EUR">EUR</option>
-                <option value="KRW">KRW</option>
-            </select>
-
-            <label for="currency-to">받을 화폐:</label>
-            <select id="currency-to">
-                <option value="KRW">KRW</option>
-                <option value="USD">USD</option>
-                <option value="EUR">EUR</option>
-            </select>
-
-            <label for="amount">금액:</label>
-            <input type="number" id="amount" placeholder="금액을 입력하세요">
-
-            <button onclick="convertCurrency()">환율 계산</button>
-
-            <div id="exchange-rate-result">
-                <p>환율 결과: <span id="exchange-rate-output"></span></p>
-            </div>
-        </div>
-
         <div class="recent-conversions-container">
-            <h2>최근 변환 기록</h2>
+            <h2>최근 계산 기록</h2>
             <ul id="recent-conversions"></ul>
-            <button onclick="saveRecentConversions()">변환 기록 저장</button>
+            <button onclick="saveRecentConversions()">기록 저장</button>
         </div>
     </main>
 
     <footer>
-        <p>&copy; 2024 건설 단위 변환기. All rights reserved.</p>
+        <p>&copy; 2024 건설 자재 계산기. All rights reserved.</p>
     </footer>
 
     <script src="scripts.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/i18next@21.6.6/i18next.min.js"></script>
 </body>
 </html>
