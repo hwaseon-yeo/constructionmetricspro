@@ -24,6 +24,10 @@
                 <option value="ft2">제곱피트 (ft²)</option>
                 <option value="yard2">제곱야드 (yd²)</option>
                 <option value="acre">에이커 (acre)</option>
+                <option value="kg">킬로그램 (kg)</option>
+                <option value="ton">톤 (ton)</option>
+                <option value="liter">리터 (L)</option>
+                <option value="gallon">갤런 (gal)</option>
             </select>
 
             <label for="to-unit">변환 후 단위:</label>
@@ -32,6 +36,10 @@
                 <option value="m2">제곱미터 (m²)</option>
                 <option value="yard2">제곱야드 (yd²)</option>
                 <option value="acre">에이커 (acre)</option>
+                <option value="kg">킬로그램 (kg)</option>
+                <option value="ton">톤 (ton)</option>
+                <option value="liter">리터 (L)</option>
+                <option value="gallon">갤런 (gal)</option>
             </select>
 
             <button onclick="convert()">변환</button>
@@ -74,6 +82,11 @@
                 <p>총 비용: <span id="cost-output"></span></p>
             </div>
         </div>
+
+        <div class="recent-conversions-container">
+            <h2>최근 변환 기록</h2>
+            <ul id="recent-conversions"></ul>
+        </div>
     </main>
 
     <footer>
@@ -83,3 +96,4 @@
     <script src="scripts.js"></script>
 </body>
 </html>
+
