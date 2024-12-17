@@ -9,48 +9,13 @@
 <body>
     <header>
         <h1>건설 단위 변환기</h1>
-        <p>다양한 단위 변환과 계산을 제공합니다.</p>
+        <p id="language-selector">다국어 지원</p>
     </header>
     
     <main>
-        <div class="converter-container">
-            <h2>단위 변환</h2>
-            <label for="input-value">변환할 값:</label>
-            <input type="number" id="input-value" placeholder="숫자를 입력하세요">
-
-            <label for="from-unit">변환 전 단위:</label>
-            <select id="from-unit">
-                <option value="m2">제곱미터 (m²)</option>
-                <option value="ft2">제곱피트 (ft²)</option>
-                <option value="yard2">제곱야드 (yd²)</option>
-                <option value="acre">에이커 (acre)</option>
-                <option value="kg">킬로그램 (kg)</option>
-                <option value="ton">톤 (ton)</option>
-                <option value="liter">리터 (L)</option>
-                <option value="gallon">갤런 (gal)</option>
-            </select>
-
-            <label for="to-unit">변환 후 단위:</label>
-            <select id="to-unit">
-                <option value="ft2">제곱피트 (ft²)</option>
-                <option value="m2">제곱미터 (m²)</option>
-                <option value="yard2">제곱야드 (yd²)</option>
-                <option value="acre">에이커 (acre)</option>
-                <option value="kg">킬로그램 (kg)</option>
-                <option value="ton">톤 (ton)</option>
-                <option value="liter">리터 (L)</option>
-                <option value="gallon">갤런 (gal)</option>
-            </select>
-
-            <button onclick="convert()">변환</button>
-
-            <div id="result">
-                <p>결과: <span id="output"></span></p>
-            </div>
-        </div>
-
         <div class="calculator-container">
-            <h2>건축 자재 계산기</h2>
+            <h2 id="material-calculator-heading">건축 자재 계산기</h2>
+            
             <label for="area">면적(제곱미터):</label>
             <input type="number" id="area" placeholder="면적을 입력하세요">
 
@@ -61,15 +26,13 @@
                 <option value="bricks">벽돌 (개)</option>
             </select>
 
-            <button onclick="calculateMaterials()">계산</button>
+            <button onclick="calculateMaterials()">자재량 계산</button>
 
             <div id="material-result">
                 <p>자재 필요량: <span id="material-output"></span></p>
             </div>
-        </div>
 
-        <div class="cost-calculator-container">
-            <h2>건축 자재 비용 계산기</h2>
+            <h2>자재 비용 계산기</h2>
             <label for="material-cost">자재 비용 (단위당):</label>
             <input type="number" id="material-cost" placeholder="단위당 가격">
 
@@ -83,9 +46,30 @@
             </div>
         </div>
 
-        <div class="recent-conversions-container">
-            <h2>최근 변환 기록</h2>
-            <ul id="recent-conversions"></ul>
+        <div class="exchange-rate-container">
+            <h3>실시간 환율 계산</h3>
+            <label for="currency-from">환전할 화폐:</label>
+            <select id="currency-from">
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <option value="KRW">KRW</option>
+            </select>
+
+            <label for="currency-to">받을 화폐:</label>
+            <select id="currency-to">
+                <option value="KRW">KRW</option>
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+            </select>
+
+            <label for="amount">금액:</label>
+            <input type="number" id="amount" placeholder="금액을 입력하세요">
+
+            <button onclick="convertCurrency()">환율 계산</button>
+
+            <div id="exchange-rate-result">
+                <p>환율 결과: <span id="exchange-rate-output"></span></p>
+            </div>
         </div>
     </main>
 
@@ -94,6 +78,7 @@
     </footer>
 
     <script src="scripts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/i18next@21.6.6/i18next.min.js"></script>
 </body>
 </html>
 
