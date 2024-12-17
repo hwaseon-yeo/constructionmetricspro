@@ -113,3 +113,35 @@ function convertCurrency() {
         .catch(err => alert('환율 API 호출 실패: ' + err));
 }
 
+// 최근 변환 기록 저장
+function saveRecentConversions() {
+    const recentConversions = JSON.parse(localStorage.getItem("recentConversions")) || [];
+    const conversion = {
+        area: document.getElementById('area').value,
+        material: document.getElementById('material').value,
+        materialAmount: document.getElementById('material-output').textContent,
+        cost: document.getElementById('cost-output').textContent
+    };
+    recentConversions.unshift(conversion); // 최신 변환을 앞에 추가
+    if (recentConversions.length > 5) recentConversions.pop(); // 최근 5개의 기록만 저장
+    localStorage.setItem("recentConversions", JSON.stringify(recentConversions));
+    displayRecentConversions();
+}
+
+// 최근 변환 기록 표시
+function displayRecentConversions() {
+    const recentConversions = JSON.parse(localStorage.getItem("recentConversions")) || [];
+    const ul = document.getElementById("recent-conversions");
+    ul.innerHTML = ""; // 기존 기록 삭제
+
+    recentConversions.forEach(function(conversion) {
+        const li = document.createElement("li");
+        li.textContent = `면적: ${conversion.area}m², 자재: ${conversion.material}, 필요량: ${conversion.materialAmount}, 비용: ${conversion.cost}`;
+        ul.appendChild(li);
+    });
+}
+
+// 페이지 로드 시 최근 변환 기록 표시
+document.addEventListener("DOMContentLoaded", function() {
+    displayRecentConversions();
+});
