@@ -24,7 +24,7 @@ main {
     padding: 20px;
 }
 
-.calculator-container, .recent-conversions-container {
+.unit-conversion-container, .calculator-container, .recent-conversions-container {
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -55,7 +55,7 @@ button:hover {
     background-color: #45a049;
 }
 
-#material-result, #cost-result {
+#material-result, #cost-result, #unit-result {
     margin-top: 20px;
     font-weight: bold;
 }
@@ -69,3 +69,4 @@ li {
     padding: 5px;
     border-bottom: 1px solid #ddd;
 }
+

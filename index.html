@@ -13,6 +13,36 @@
     </header>
     
     <main>
+        <!-- 단위 변환 박스 추가 -->
+        <div class="unit-conversion-container">
+            <h2>다양한 단위 변환</h2>
+            <label for="unit-value">변환할 값:</label>
+            <input type="number" id="unit-value" placeholder="숫자를 입력하세요">
+
+            <label for="unit-from">변환 전 단위:</label>
+            <select id="unit-from">
+                <option value="m2">제곱미터 (m²)</option>
+                <option value="ft2">제곱피트 (ft²)</option>
+                <option value="kg">킬로그램 (kg)</option>
+                <option value="liter">리터 (L)</option>
+                <option value="meter">미터 (m)</option>
+            </select>
+
+            <label for="unit-to">변환 후 단위:</label>
+            <select id="unit-to">
+                <option value="ft2">제곱피트 (ft²)</option>
+                <option value="m2">제곱미터 (m²)</option>
+                <option value="kg">킬로그램 (kg)</option>
+                <option value="liter">리터 (L)</option>
+                <option value="meter">미터 (m)</option>
+            </select>
+
+            <button onclick="convertUnit()">변환</button>
+            <div id="unit-result">
+                <p>결과: <span id="unit-output"></span></p>
+            </div>
+        </div>
+
         <div class="calculator-container">
             <h2>자재 계산기</h2>
             
@@ -45,6 +75,7 @@
             <h2>최근 계산 기록</h2>
             <ul id="recent-conversions"></ul>
             <button onclick="saveRecentConversions()">기록 저장</button>
+            <button onclick="clearRecentConversions()">기록 삭제</button>
         </div>
     </main>
 

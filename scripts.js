@@ -1,4 +1,36 @@
-// 실시간 환율 변환 및 자재량 계산기
+// 다양한 단위 변환
+function convertUnit() {
+    const value = parseFloat(document.getElementById("unit-value").value);
+    const fromUnit = document.getElementById("unit-from").value;
+    const toUnit = document.getElementById("unit-to").value;
+    let result;
+
+    if (isNaN(value)) {
+        alert("숫자를 입력해주세요.");
+        return;
+    }
+
+    // 면적, 무게, 부피, 길이 변환
+    if (fromUnit === "m2" && toUnit === "ft2") {
+        result = value * 10.764;
+    } else if (fromUnit === "ft2" && toUnit === "m2") {
+        result = value / 10.764;
+    } else if (fromUnit === "kg" && toUnit === "ton") {
+        result = value / 1000;
+    } else if (fromUnit === "ton" && toUnit === "kg") {
+        result = value * 1000;
+    } else if (fromUnit === "liter" && toUnit === "gallon") {
+        result = value * 0.264172;
+    } else if (fromUnit === "gallon" && toUnit === "liter") {
+        result = value / 0.264172;
+    } else {
+        result = value;
+    }
+
+    document.getElementById("unit-output").textContent = result.toFixed(2);
+}
+
+// 자재 계산기
 function calculateMaterialsAndCost() {
     const area = parseFloat(document.getElementById("area").value);
     const material = document.getElementById("material").value;
@@ -9,7 +41,6 @@ function calculateMaterialsAndCost() {
         return;
     }
 
-    // 자재 계산
     let materialAmount;
     if (material === "cement") {
         materialAmount = area * 30; // 예시: 시멘트 1m²당 30kg
@@ -19,18 +50,16 @@ function calculateMaterialsAndCost() {
         materialAmount = area * 100; // 예시: 벽돌 1m²당 100개
     }
 
-    // 자재 비용 계산 (API에서 가격 가져오기)
-    fetch(`https://api.exchangerate-api.com/v4/latest/USD`)  // API 예시, 실제 시장가를 API로 가져옴
+    fetch(`https://api.exchangerate-api.com/v4/latest/USD`)
         .then(response => response.json())
         .then(data => {
             const usdToCurrency = data.rates[currency];
             const costPerUnit = 10; // 예시: 단위당 가격 10 USD
             const totalCost = (costPerUnit * materialAmount) * usdToCurrency;
 
-            // 화면에 결과 출력
             document.getElementById("material-output").textContent = materialAmount.toFixed(2);
             document.getElementById("cost-output").textContent = totalCost.toFixed(2);
-            
+
             // 최근 계산 기록 저장
             saveRecentConversion(area, material, materialAmount, totalCost);
         })
@@ -79,7 +108,6 @@ function saveRecentConversions() {
         fileContent += `면적: ${conversion.area}m², 자재: ${conversion.material}, 자재량: ${conversion.materialAmount}kg, 총 비용: ${conversion.totalCost}\n`;
     });
 
-    // Blob을 사용하여 파일 저장
     const blob = new Blob([fileContent], { type: 'text/plain' });
     const link = document.createElement("a");
     link.href = URL.createObjectURL(blob);
@@ -87,3 +115,8 @@ function saveRecentConversions() {
     link.click();
 }
 
+// 기록 삭제
+function clearRecentConversions() {
+    localStorage.removeItem("recentConversions");
+    displayRecentConversions();
+}
